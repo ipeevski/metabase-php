@@ -1,6 +1,7 @@
 <?php
+namespace Metabase;
 
-public class Metabase
+class Metabase
 {
     private $url;
     private $key;
@@ -11,12 +12,12 @@ public class Metabase
         $this->key = $key;
     }
 
-    function questionUrl($questionId, $params = [], $options = ['bordered'])
+    public function questionUrl($questionId, $params = [], $options = ['bordered'])
     {
         return $this->url('question', $questionId, $params, $options);
     }
 
-    function dashboardUrl($dashboardId, $params = [], $options = ['bordered'])
+    public function dashboardUrl($dashboardId, $params = [], $options = ['bordered'])
     {
         return $this->url('dashboard', $dashboardId, $params, $options);
     }
@@ -71,8 +72,8 @@ public class Metabase
         return '<iframe
             src="' . $iframeUrl . '"
             frameborder="0"
-            width="100%"
-            height="800"
+            width="' . $width . '"
+            height="' . $height . '"
             allowtransparency
             ></iframe>';
     }
