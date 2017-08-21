@@ -1,0 +1,24 @@
+{
+    "name": "cyberhorse/metabase-php",
+    "type": "library",
+    "description": "Embedding Metabase",
+    "keywords": ["metabase"],
+    "homepage": "https://github.com/cyberhorse/metabase-php",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ivan Peevski",
+            "email": "ipeevski@gmail.com",
+            "homepage": "http://ipeevski.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "lcobucci/jwt": "^3.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Metabase\\": "src"
+        }
+    }
+}
