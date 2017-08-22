@@ -4,7 +4,7 @@ namespace Metabase;
 /**
  * Convenience class to embed Metabase dashboards and questions
  */
-class Metabase
+class Embed
 {
     private $url;
     private $key;
@@ -81,14 +81,14 @@ class Metabase
         $url = $this->url . '/embed/' . $resource . '/' . $token . '#';
 
         // Should border be included
-        if ($this->bordered) {
+        if ($this->border) {
             $url .= 'bordered=true&';
         } else {
             $url .= 'bordered=false&';
         }
         
         // Should title be included
-        if ($this->titled) {
+        if ($this->title) {
             $url .= 'titled=true&';
         } else {
             $url .= 'titled=false&';
