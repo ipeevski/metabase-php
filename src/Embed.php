@@ -1,5 +1,6 @@
 <?php
 namespace Metabase;
+use Lcobucci\JWT\Token;
 
 /**
  * Convenience class to embed Metabase dashboards and questions
@@ -19,8 +20,8 @@ class Embed
     /**
      * Default constructor
      *
-     * @param $url The base url for the Metabase installation
-     * @param $key The secret Metabase key
+     * @param $url string base url for the Metabase installation
+     * @param $key int secret Metabase key
      */
     public function __construct($url, $key)
     {
@@ -31,8 +32,8 @@ class Embed
     /**
      * Get the embed URL for a Metabase question
      *
-     * @param $questionId   The id of the question to embed
-     * @param $params       An associate array with variables to be passed to the question
+     * @param $questionId int id of the question to embed
+     * @param $params array an associate array with variables to be passed to the question
      *
      * @return Embed URL
      */
@@ -44,8 +45,8 @@ class Embed
     /**
      * Get the embed URL for a Metabase dashboard
      *
-     * @param $dashboardId  The id of the dashboard to embed
-     * @param $params       An associate array with variables to be passed to the dashboard
+     * @param $dashboardId int the id of the dashboard to embed
+     * @param $params array an associate array with variables to be passed to the dashboard
      *
      * @return Embed URL
      */
@@ -57,8 +58,8 @@ class Embed
     /**
      * Use JWT to encode tokens
      *
-     * @param $resouce  Resource to encode (question or dashboard)
-     * @param $params   An associate array with variables to be passed to the dashboard
+     * @param $resource array resource to encode (question or dashboard)
+     * @param $params array an associate array with variables to be passed to the dashboard
      *
      * @return Token
      */
@@ -110,10 +111,10 @@ class Embed
      * It assumes no iframe border. Size can be manipulated via
      * class $width/$height
      *
-     * @param $questionId   The id of the question to embed
-     * @param $params       An associate array with variables to be passed to the question
+     * @param $questionId int the id of the question to embed
+     * @param $params array an associate array with variables to be passed to the question
      *
-     * @return HTML Code to embed
+     * @return string Code to embed
      */
     public function questionIFrame($questionId, $params = [])
     {
@@ -126,10 +127,10 @@ class Embed
      * It assumes no iframe border. Size can be manipulated via
      * class $width/$height
      *
-     * @param $dashboardId  The id of the dashboard to embed
-     * @param $params       An associate array with variables to be passed to the dashboard
+     * @param $dashboardId int the id of the dashboard to embed
+     * @param $params array an associate array with variables to be passed to the dashboard
      *
-     * @return HTML Code to embed
+     * @return string Code to embed
      */
     public function dashboardIFrame($dashboardId, $params = [])
     {
@@ -142,9 +143,9 @@ class Embed
      * It assumes no iframe border. Size can be manipulated via
      * class $width/$height
      *
-     * @param $iframeUrl    The URL to create an iframe for
+     * @param $iframeUrl string the URL to create an iframe for
      *
-     * @return HTML Code to embed
+     * @return string Code to embed
      */
     protected function iframe($iframeUrl)
     {
