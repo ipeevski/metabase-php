@@ -2,7 +2,7 @@ Library to embed [Metabase](http://www.metabase.com/) frames
 
 # Installation
 - Install via composer
-`composer require cyberhorse/metabase-php`
+`composer require ipeevski/metabase-php`
 - Go to Metabase and enable embedding - https://[metabase_url]/admin/settings/embedding_in_other_applications
 - Note down the Metabase base url and the Embedding secret key
 
