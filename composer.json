@@ -1,9 +1,9 @@
 {
-    "name": "cyberhorse/metabase-php",
+    "name": "ipeevski/metabase-php",
     "type": "library",
     "description": "Embedding Metabase",
     "keywords": ["metabase"],
-    "homepage": "https://github.com/cyberhorse/metabase-php",
+    "homepage": "https://github.com/ipeevski/metabase-php",
     "license": "MIT",
     "authors": [
         {
