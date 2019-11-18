@@ -67,7 +67,11 @@ class Embed
     {
         $jwt = new \Lcobucci\JWT\Builder();
         $jwt->set('resource', $resource);
-        $jwt->set('params', $params);
+        if (empty($params)) {
+            $jwt->set('params', (object)[]);
+        } else {
+            $jwt->set('params', $params);
+        }
         $jwt->sign(new \Lcobucci\JWT\Signer\Hmac\Sha256(), $this->key);
 
         return $jwt->getToken();
