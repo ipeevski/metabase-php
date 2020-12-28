@@ -10,12 +10,12 @@ class Embed
     private $url;
     private $key;
 
-    public $border = true;
-    public $title = false;
+    public $border;
+    public $title;
     public $theme;
 
-    public $width = '100%';
-    public $height = '800';
+    public $width;
+    public $height;
 
     /**
      * Default constructor
@@ -23,10 +23,14 @@ class Embed
      * @param $url string base url for the Metabase installation
      * @param $key int secret Metabase key
      */
-    public function __construct($url, $key)
+    public function __construct($url, $key, $border = true, $title = false, $width = '100%', $height = '800')
     {
         $this->url = $url;
         $this->key = $key;
+        $this->border = $border;
+        $this->title = $title;
+        $this->width = $width;
+        $this->height = $height;
     }
 
     /**
