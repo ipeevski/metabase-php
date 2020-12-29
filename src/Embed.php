@@ -22,8 +22,12 @@ class Embed
      *
      * @param $url string base url for the Metabase installation
      * @param $key int secret Metabase key
+     * @param $title bool show dashboard/question title (default = false)
+     * @param $width string set css width of dashboard/question
+     * @param $height string set css height of dashboard/question
+     * @param $border bool show dashboard/question border (default = false)
      */
-    public function __construct($url, $key, $border = true, $title = false, $width = '100%', $height = '800')
+    public function __construct($url, $key, $title = false, $width = '100%', $height = '800', $border = true)
     {
         $this->url = $url;
         $this->key = $key;
