@@ -1,5 +1,7 @@
 <?php
+
 namespace Metabase;
+
 use Lcobucci\JWT\Token;
 
 /**
@@ -20,8 +22,8 @@ class Embed
     /**
      * Default constructor
      *
-     * @param $url string base url for the Metabase installation
-     * @param $key int secret Metabase key
+     * @param string $url Base url for the Metabase installation
+     * @param string $key Secret Metabase key
      */
     public function __construct($url, $key)
     {
@@ -54,7 +56,7 @@ class Embed
     {
         return $this->url('dashboard', $dashboardId, $params);
     }
-    
+
     /**
      * Use JWT to encode tokens
      *
@@ -76,12 +78,12 @@ class Embed
 
         return $jwt->getToken();
     }
-    
+
     protected function url($resource, $id, $params)
     {
         // Generate auth token, using JWT
         $token = $this->encode([$resource => $id], $params);
-        
+
         // Generate embed URL
         $url = $this->url . '/embed/' . $resource . '/' . $token . '#';
 
@@ -91,25 +93,25 @@ class Embed
         } else {
             $url .= 'bordered=false&';
         }
-        
+
         // Should title be included
         if ($this->title) {
             $url .= 'titled=true&';
         } else {
             $url .= 'titled=false&';
         }
-        
+
         // Set selected theme (if any)
         if (!empty($this->theme)) {
             $url .= 'theme=' . $this->theme . '&';
         }
-        
+
         // Remove trailing &
         $url = rtrim($url, '&');
-        
+
         return $url;
     }
-    
+
     /**
      * Generate the HTML to embed a question iframe with a given question id.
      * It assumes no iframe border. Size can be manipulated via
@@ -125,7 +127,7 @@ class Embed
         $url = $this->questionUrl($questionId, $params);
         return $this->iframe($url);
     }
-    
+
     /**
      * Generate the HTML to embed a dashboard iframe with a given dashboard id.
      * It assumes no iframe border. Size can be manipulated via
