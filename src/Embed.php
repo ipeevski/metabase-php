@@ -12,23 +12,31 @@ class Embed
     private $url;
     private $key;
 
-    public $border = true;
-    public $title = false;
+    public $border;
+    public $title;
     public $theme;
 
-    public $width = '100%';
-    public $height = '800';
+    public $width;
+    public $height;
 
     /**
      * Default constructor
      *
-     * @param string $url Base url for the Metabase installation
-     * @param string $key Secret Metabase key
+     * @param string $url    Base url for the Metabase installation
+     * @param string $key    Secret Metabase key
+     * @param bool   $title  Show dashboard/question title (default = false)
+     * @param string $width  Set css width of dashboard/question (default = 100%)
+     * @param string $height Set css height of dashboard/question (default = 800)
+     * @param bool   $border Show dashboard/question border (default = true)
      */
-    public function __construct($url, $key)
+    public function __construct($url, $key, $title = false, $width = '100%', $height = '800', $border = true)
     {
         $this->url = $url;
         $this->key = $key;
+        $this->border = $border;
+        $this->title = $title;
+        $this->width = $width;
+        $this->height = $height;
     }
 
     /**
