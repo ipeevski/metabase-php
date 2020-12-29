@@ -20,10 +20,10 @@ class Embed
     /**
      * Default constructor
      *
-     * @param $url string base url for the Metabase installation
-     * @param $key int secret Metabase key
-     * @param $title bool show dashboard/question title (default = false)
-     * @param $width string set css width of dashboard/question
+     * @param $url    string base url for the Metabase installation
+     * @param $key    int secret Metabase key
+     * @param $title  bool show dashboard/question title (default = false)
+     * @param $width  string set css width of dashboard/question
      * @param $height string set css height of dashboard/question
      * @param $border bool show dashboard/question border (default = false)
      */
