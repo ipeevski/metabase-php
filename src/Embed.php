@@ -1,5 +1,7 @@
 <?php
+
 namespace Metabase;
+
 use Lcobucci\JWT\Token;
 
 /**
@@ -20,12 +22,12 @@ class Embed
     /**
      * Default constructor
      *
-     * @param $url    string base url for the Metabase installation
-     * @param $key    int secret Metabase key
-     * @param $title  bool show dashboard/question title (default = false)
-     * @param $width  string set css width of dashboard/question
-     * @param $height string set css height of dashboard/question
-     * @param $border bool show dashboard/question border (default = false)
+     * @param string $url    Base url for the Metabase installation
+     * @param string $key    Secret Metabase key
+     * @param bool   $title  Show dashboard/question title (default = false)
+     * @param string $width  Set css width of dashboard/question (default = 100%)
+     * @param string $height Set css height of dashboard/question (default = 800)
+     * @param bool   $border Show dashboard/question border (default = true)
      */
     public function __construct($url, $key, $title = false, $width = '100%', $height = '800', $border = true)
     {
@@ -62,7 +64,7 @@ class Embed
     {
         return $this->url('dashboard', $dashboardId, $params);
     }
-    
+
     /**
      * Use JWT to encode tokens
      *
@@ -84,12 +86,12 @@ class Embed
 
         return $jwt->getToken();
     }
-    
+
     protected function url($resource, $id, $params)
     {
         // Generate auth token, using JWT
         $token = $this->encode([$resource => $id], $params);
-        
+
         // Generate embed URL
         $url = $this->url . '/embed/' . $resource . '/' . $token . '#';
 
@@ -99,25 +101,25 @@ class Embed
         } else {
             $url .= 'bordered=false&';
         }
-        
+
         // Should title be included
         if ($this->title) {
             $url .= 'titled=true&';
         } else {
             $url .= 'titled=false&';
         }
-        
+
         // Set selected theme (if any)
         if (!empty($this->theme)) {
             $url .= 'theme=' . $this->theme . '&';
         }
-        
+
         // Remove trailing &
         $url = rtrim($url, '&');
-        
+
         return $url;
     }
-    
+
     /**
      * Generate the HTML to embed a question iframe with a given question id.
      * It assumes no iframe border. Size can be manipulated via
@@ -133,7 +135,7 @@ class Embed
         $url = $this->questionUrl($questionId, $params);
         return $this->iframe($url);
     }
-    
+
     /**
      * Generate the HTML to embed a dashboard iframe with a given dashboard id.
      * It assumes no iframe border. Size can be manipulated via
