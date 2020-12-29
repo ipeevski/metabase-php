@@ -42,10 +42,10 @@ class Embed
     /**
      * Get the embed URL for a Metabase question
      *
-     * @param $questionId int id of the question to embed
-     * @param $params array an associate array with variables to be passed to the question
+     * @param int   $questionId The id of the question to embed
+     * @param array $params     An associate array with variables to be passed to the question
      *
-     * @return Embed URL
+     * @return string Embed URL
      */
     public function questionUrl($questionId, $params = [])
     {
@@ -55,10 +55,10 @@ class Embed
     /**
      * Get the embed URL for a Metabase dashboard
      *
-     * @param $dashboardId int the id of the dashboard to embed
-     * @param $params array an associate array with variables to be passed to the dashboard
+     * @param int   $dashboardId The id of the dashboard to embed
+     * @param array $params      An associate array with variables to be passed to the dashboard
      *
-     * @return Embed URL
+     * @return string Embed URL
      */
     public function dashboardUrl($dashboardId, $params = [])
     {
@@ -68,10 +68,10 @@ class Embed
     /**
      * Use JWT to encode tokens
      *
-     * @param $resource array resource to encode (question or dashboard)
-     * @param $params array an associate array with variables to be passed to the dashboard
+     * @param array $resource Resource to encode (question or dashboard)
+     * @param array $params   An associate array with variables to be passed to the dashboard
      *
-     * @return Token
+     * @return string Token
      */
     private function encode($resource, $params)
     {
@@ -125,8 +125,8 @@ class Embed
      * It assumes no iframe border. Size can be manipulated via
      * class $width/$height
      *
-     * @param $questionId int the id of the question to embed
-     * @param $params array an associate array with variables to be passed to the question
+     * @param int   $questionId The id of the question to embed
+     * @param array $params     An associate array with variables to be passed to the question
      *
      * @return string Code to embed
      */
@@ -141,8 +141,8 @@ class Embed
      * It assumes no iframe border. Size can be manipulated via
      * class $width/$height
      *
-     * @param $dashboardId int the id of the dashboard to embed
-     * @param $params array an associate array with variables to be passed to the dashboard
+     * @param int   $dashboardId The id of the dashboard to embed
+     * @param array $params      An associate array with variables to be passed to the dashboard
      *
      * @return string Code to embed
      */
@@ -157,7 +157,7 @@ class Embed
      * It assumes no iframe border. Size can be manipulated via
      * class $width/$height
      *
-     * @param $iframeUrl string the URL to create an iframe for
+     * @param string $iframeUrl The URL to create an iframe for
      *
      * @return string Code to embed
      */
