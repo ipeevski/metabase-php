@@ -14,7 +14,7 @@
         }
     ],
     "require": {
-        "lcobucci/jwt": "^3.2"
+        "lcobucci/jwt": "^4.2"
     },
     "autoload": {
         "psr-4": {
