@@ -2,6 +2,9 @@
 
 namespace Metabase;
 
+use Lcobucci\JWT\Configuration;
+use Lcobucci\JWT\Signer\Key\InMemory;
+use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Lcobucci\JWT\Token;
 
 /**
@@ -18,6 +21,8 @@ class Embed
 
     public $width;
     public $height;
+
+    private $jwtConfig;
 
     /**
      * Default constructor
@@ -37,6 +42,8 @@ class Embed
         $this->title = $title;
         $this->width = $width;
         $this->height = $height;
+
+        $this->jwtConfig = Configuration::forSymmetricSigner(new Sha256(), InMemory::plainText($this->key));
     }
 
     /**
@@ -75,16 +82,15 @@ class Embed
      */
     private function encode($resource, $params)
     {
-        $jwt = new \Lcobucci\JWT\Builder();
-        $jwt->set('resource', $resource);
+        $jwt = $this->jwtConfig->builder();
+        $jwt->withClaim('resource', $resource);
         if (empty($params)) {
-            $jwt->set('params', (object)[]);
+            $jwt->withClaim('params', (object)[]);
         } else {
-            $jwt->set('params', $params);
+            $jwt->withClaim('params', $params);
         }
-        $jwt->sign(new \Lcobucci\JWT\Signer\Hmac\Sha256(), $this->key);
 
-        return $jwt->getToken();
+        return $jwt->getToken($this->jwtConfig->signer(), $this->jwtConfig->signingKey());
     }
 
     protected function url($resource, $id, $params)
