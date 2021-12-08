@@ -99,7 +99,7 @@ class Embed
         $token = $this->encode([$resource => $id], $params);
 
         // Generate embed URL
-        $url = $this->url . '/embed/' . $resource . '/' . $token . '#';
+        $url = $this->url . '/embed/' . $resource . '/' . $token->toString() . '#';
 
         // Should border be included
         if ($this->border) {
