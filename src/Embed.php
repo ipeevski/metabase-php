@@ -2,6 +2,8 @@
 
 namespace Metabase;
 
+use DateInterval;
+use DateTimeImmutable;
 use Lcobucci\JWT\Configuration;
 use Lcobucci\JWT\Signer\Key\InMemory;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
@@ -24,6 +26,8 @@ class Embed
 
     private $jwtConfig;
 
+    private $expirationSeconds;
+
     /**
      * Default constructor
      *
@@ -33,8 +37,9 @@ class Embed
      * @param string $width  Set css width of dashboard/question (default = 100%)
      * @param string $height Set css height of dashboard/question (default = 800)
      * @param bool   $border Show dashboard/question border (default = true)
+     * @param int $expirationSeconds Set jwt token expiration in seconds (default = null)
      */
-    public function __construct($url, $key, $title = false, $width = '100%', $height = '800', $border = true)
+    public function __construct($url, $key, $title = false, $width = '100%', $height = '800', $border = true, $expirationSeconds = null)
     {
         $this->url = $url;
         $this->key = $key;
@@ -42,6 +47,7 @@ class Embed
         $this->title = $title;
         $this->width = $width;
         $this->height = $height;
+        $this->expirationSeconds = $expirationSeconds;
 
         $this->jwtConfig = Configuration::forSymmetricSigner(new Sha256(), InMemory::plainText($this->key));
     }
@@ -88,6 +94,9 @@ class Embed
             $jwt->withClaim('params', (object)[]);
         } else {
             $jwt->withClaim('params', $params);
+        }
+        if (!is_null($this->expirationSeconds)) {
+            $jwt->expiresAt((new DateTimeImmutable())->modify('+' . $this->expirationSeconds . ' seconds'));
         }
 
         return $jwt->getToken($this->jwtConfig->signer(), $this->jwtConfig->signingKey());
